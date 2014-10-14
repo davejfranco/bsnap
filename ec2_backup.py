@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
-
+"""
+Copyright (C) 2014 Blanclink, Inc.
+---------------------------
+bsnap: Automatic Instance Snapshot via boto.
+Author: Dave Franco <dave.franco@blanclink.com>
+---------------------------
+bsnap module:
+Basically creates snapshots of attached volumes,
+checks if there is any old snapshots and deletes it.
+"""
 import boto.ec2
 from datetime import datetime, timedelta
 
@@ -8,7 +17,6 @@ print '*  Making Backup      *'
 print '***********************'
 
 #Connecting to us_west-region
-ec2 = boto.ec2.connect_to_region('us-west-2')
 today = date.today())
 
 
