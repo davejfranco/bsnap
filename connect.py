@@ -17,7 +17,7 @@ def connect():
 
     region = boto.ec2.connect_to_region('us-west-2')
 
-    return 
+    return
 
 
 
