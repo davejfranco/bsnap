@@ -20,30 +20,28 @@ print('***********************')
 
 #Connecting to us_west-region
 ec2 = boto.ec2.connect_to_region('us-west-2')
-Snapshots = ec2.get_all_snapshots(filters={'tag:Name':'snap_*'})
+Snapshots = ec2.get_all_snapshots(filters={'tag:Name':'*'})
 
 #Delete old Snapshots
 def old_snapshots():
 
-    delete_time = datetime.utcnow() - timedelta(14)
+    delete_time = datetime.utcnow() - timedelta(7)
     for snapshot in Snapshots:
         start_time = datetime.strptime(snapshot.start_time,'%Y-%m-%dT%H:%M:%S.000Z')
         if start_time < delete_time:
             snapshot.delete()
-        print('Done')
+    return
 
-
+#Based on volumes attached, create snapshots
 def Backup_volumes():
 	
-	volumes=ec2.get_all_volumes(filters={'tag:Name':''})
-	for n in range(len(volumes)):
-		if volumes[n].attachment_state()=='attached':
-			for v in volumes:
-				v.create_snapshot('Weekly_Backup')
+    volumes=ec2.get_all_volumes()
+    for n in range(len(volumes)):
+        if volumes[n].attachment_state()=='attached':
+            volumes[n].create_snapshot('Test_Backup')
 
-	print ('Listo')
+    return
 
-#Backup_volumes()
-old_snapshots()
-
-
+if __name__=='__main__':
+    old_snapshots()
+    Backup_volumes()
