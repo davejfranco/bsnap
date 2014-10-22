@@ -21,15 +21,15 @@ Snapshots = ec2.get_all_snapshots(filters={'tag:Name':'*'})
 #Delete old Snapshots
 def OldSnapshots():
 
-    try:
-        log.info('Deleting old Snapshots...')
-        delete_time = datetime.utcnow() - timedelta(14)
-        for snapshot in Snapshots:
-            start_time = datetime.strptime(snapshot.start_time,'%Y-%m-%dT%H:%M:%S.000Z')
-            if start_time < delete_time:
+    delete_time = datetime.utcnow() - timedelta(14)
+    for snapshot in Snapshots:
+        start_time = datetime.strptime(snapshot.start_time,'%Y-%m-%dT%H:%M:%S.000Z')
+        if start_time < delete_time:
+            try:
+                log.info('Deleting old Snapshots...')
                 snapshot.delete()
-    except:
-        log.error('Unable to delete snapshots')
+            except:
+                log.error('Unable to delete snapshots')
 
 
 #Based on volumes attached, create snapshots
@@ -40,7 +40,7 @@ def BackupVolumes():
         volumes=ec2.get_all_volumes()
         for n in range(len(volumes)):
             if volumes[n].attachment_state()=='attached':
-                volumes[n].create_snapshot('Test_Backup')
+                volumes[n].create_snapshot('Weekly Backup')
     except:
         log.error('Unable to create snapshots')
 
