@@ -30,6 +30,8 @@ def OldSnapshots():
                 snapshot.delete()
             except:
                 log.error('Unable to delete snapshots')
+            else:
+                log.error('Successful snapshot delete')
 
 
 #Based on volumes attached, create snapshots
@@ -43,6 +45,8 @@ def BackupVolumes():
                 volumes[n].create_snapshot('Weekly Backup')
     except:
         log.error('Unable to create snapshots')
+    else:
+        log.info('Successful snapshot creation')
 
 
 if __name__=='__main__':
