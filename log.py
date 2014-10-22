@@ -17,12 +17,13 @@ logger.setLevel(logging.INFO)
 handler = logging.handlers.SysLogHandler(address='/dev/log')
 
 # create formatter
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+formatter = logging.Formatter('%(name)s - %(levelname)s - %(message)s')
 handler.setFormatter(formatter)
 
 
 # add Handler
 logger.addHandler(handler)
+
 
 
 def info(message):
@@ -41,4 +42,5 @@ def critical(message):
 
     return logger.critical(message)
 
-info('this is a test')
+
+
