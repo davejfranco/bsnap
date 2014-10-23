@@ -24,6 +24,12 @@ handler.setFormatter(formatter)
 # add Handler
 logger.addHandler(handler)
 
+"""
+Each function refers to
+a state of alert which can be use
+to send log notification to syslog according to a
+specific situation.
+"""
 
 
 def info(message):
