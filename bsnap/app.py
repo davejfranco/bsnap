@@ -16,11 +16,15 @@ from datetime import datetime, timedelta
 
 #Connecting to us_west-region
 ec2 = boto.ec2.connect_to_region('us-west-2')
-Snapshots = ec2.get_all_snapshots(filters={'tag:Name':'*'})
 
-#Delete old Snapshots
+"""
+This function retrieves all snapshots on the us-west-2
+region and catch the start_time attribute, if is 14 days
+older than the actual date are going to be deleted.
+"""
 def OldSnapshots():
 
+    Snapshots = ec2.get_all_snapshots(filters={'tag:Name':'*'})
     delete_time = datetime.utcnow() - timedelta(14)
     for snapshot in Snapshots:
         start_time = datetime.strptime(snapshot.start_time,'%Y-%m-%dT%H:%M:%S.000Z')
@@ -32,9 +36,12 @@ def OldSnapshots():
                 log.error('Unable to delete snapshots')
             else:
                 log.error('Successful snapshot delete')
-
-
-#Based on volumes attached, create snapshots
+    return
+"""
+Retrieve all the volumes in the us-west-2 region and
+it will create a snapshot only if the volumes is
+attached to an instance.
+"""
 def BackupVolumes():
 	
     try:
@@ -48,6 +55,7 @@ def BackupVolumes():
     else:
         log.info('Successful snapshot creation')
 
+    return
 
 if __name__=='__main__':
     OldSnapshots()
