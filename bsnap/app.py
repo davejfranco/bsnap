@@ -11,15 +11,11 @@ checks if there are any old snapshots and deletes them.
 
 
 import boto.ec2
+import sys
 from . import log
 from datetime import datetime, timedelta
 
-
-#Connecting to us_west-region
-ec2 = boto.ec2.connect_to_region('us-west-2')
-
-
-def delete_old_snapshots():
+def delete_old_snapshots(ec2):
     """
     Retrieves all snapshots on the us-west-2
     region and catch the start_time attribute, if is 14 days
@@ -40,7 +36,7 @@ def delete_old_snapshots():
                 log.error('Successful snapshot delete')
 
 
-def backup_volumes():
+def backup_volumes(ec2):
     """
     Retrieve all the volumes in the us-west-2 region and
     it will create a snapshot only if the volumes is
@@ -58,6 +54,14 @@ def backup_volumes():
         log.info('Successful snapshot creation')
 
 
+def main():
+    """Main entry point"""
+    # Connecting to us_west-region
+    ec2 = boto.ec2.connect_to_region('us-west-2')
+    delete_old_snapshots(ec2)
+    backup_volumes(ec2)
+    return 0
+
 if __name__=='__main__':
-    delete_old_snapshots()
-    backup_volumes()
+    sys.exit(main())
+
