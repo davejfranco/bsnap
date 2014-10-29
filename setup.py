@@ -26,5 +26,6 @@ setup(
     install_requires = [
         'boto >= 2.33.0'
     ],
-    long_description='bsnap deletes 14 days old snapshots and creates snapshots every week',
+    long_description='bsnap deletes 14 days old snapshots '
+                     'and creates snapshots every week',
 )
