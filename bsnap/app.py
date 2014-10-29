@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Copyright (C) 2014 Blanclink, Inc.
 ---------------------------
@@ -36,7 +35,6 @@ def OldSnapshots():
                 log.error('Unable to delete snapshots')
             else:
                 log.error('Successful snapshot delete')
-    return
 """
 Retrieve all the volumes in the us-west-2 region and
 it will create a snapshot only if the volumes is
@@ -55,7 +53,6 @@ def BackupVolumes():
     else:
         log.info('Successful snapshot creation')
 
-    return
 
 if __name__=='__main__':
     OldSnapshots()
