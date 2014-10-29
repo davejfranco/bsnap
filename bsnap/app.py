@@ -9,7 +9,7 @@ bsnap module:
 Basically creates snapshots of attached volumes,
 checks if there is any old snapshots and deletes it.
 """
-import log
+from . import log
 import boto.ec2
 from datetime import datetime, timedelta
 
