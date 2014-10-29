@@ -20,7 +20,7 @@ setup(
     packages=find_packages(),
     entry_points={
         'console_scripts': [
-            'bsnap = bsnap.app',
+            'bsnap = bsnap.app:main',
         ],
     },
     install_requires = [
