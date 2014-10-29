@@ -10,10 +10,6 @@ setuptools config file
 import os
 from setuptools import setup, find_packages
 
-
-def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
-
 setup(
     name = "bsnap",
     version = "1.0",
@@ -30,5 +26,6 @@ setup(
     install_requires = [
         'boto >= 2.33.0'
     ],
-    long_description='bsnap deletes 14 days old snapshots and creates snapshots every week',
+    long_description='bsnap deletes 14 days old snapshots '
+                     'and creates snapshots every week',
 )

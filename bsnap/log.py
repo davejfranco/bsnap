@@ -1,11 +1,13 @@
-""" Copyright (C) 2014 Blanclink, Inc.
+"""
+Copyright (C) Blanclink, Inc.
 ---------------------------
-log module.
+bsnap: Automatic Instance Snapshots via boto.
 Author: Dave Franco <dave.franco@blanclink.com>
 ---------------------------
-Description
+log module:
 Define log message with priority
-and send to syslog """
+and send to syslog
+"""
 import logging
 import logging.handlers
 
@@ -33,19 +35,15 @@ specific situation.
 
 
 def info(message):
-
     return logger.info(message)
 
 def warn(message):
-
     return logger.warn(message)
 
 def error(message):
-
     return logger.error(message)
 
 def critical(message):
-
     return logger.critical(message)
 
 
