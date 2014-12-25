@@ -10,8 +10,8 @@ checks if there are any old snapshots and deletes them.
 """
 
 
-import boto.ec2
 import sys
+import boto.ec2
 from . import log
 from datetime import datetime, timedelta
 
@@ -22,18 +22,19 @@ def delete_old_snapshots(ec2):
     older than the actual date are going to be deleted.
     """
     Snapshots = ec2.get_all_snapshots(filters={'tag:Name':'*'})
-    delete_time = datetime.utcnow() - timedelta(14)
-    for snapshot in Snapshots:
-        start_time = datetime.strptime(snapshot.start_time,
+    delete_time = datetime.utcnow() - timedelta(7)
+
+    try:
+        log.info('Deleting old Snapshots...')
+        for snapshot in Snapshots:
+            start_time = datetime.strptime(snapshot.start_time,
                                        '%Y-%m-%dT%H:%M:%S.000Z')
-        if start_time < delete_time:
-            try:
-                log.info('Deleting old Snapshots...')
+            if start_time < delete_time:
                 snapshot.delete()
-            except:
-                log.error('Unable to delete snapshots')
-            else:
-                log.error('Successful snapshot delete')
+    except:
+        log.error('Unable to delete snapshots')
+    else:
+        log.error('Successful snapshot delete')
 
 
 def backup_volumes(ec2):
