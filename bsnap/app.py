@@ -13,7 +13,7 @@ checks if there are any old snapshots and deletes them.
 import sys
 import boto.ec2
 import boto.sns
-import log
+from . import log
 from datetime import datetime, timedelta
 
 # Connecting to us_west-region
@@ -73,7 +73,7 @@ def SnsNotify(sns):
     and backup_volumes and send notification via sns to
     a specific topic
     """
-    topic = "arn:aws:sns:us-west-2:816295349629:testing"
+    topic = "arn:aws:sns:us-west-2:816295349629:notifySysadmin"
     subject = "bsnap Backup"
     msg_win = "Successful bsnap Operation"
     msg_fail = "Failed bsnap Operation, check syslog entries"
