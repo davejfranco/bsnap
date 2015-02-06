@@ -11,9 +11,9 @@ checks if there are any old snapshots and deletes them.
 
 
 import sys
+import log
 import boto.ec2
 import boto.sns
-from . import log
 from datetime import datetime, timedelta
 
 # Connecting to us_west-region

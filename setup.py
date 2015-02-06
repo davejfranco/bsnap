@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python2.7
 """
 Copyright (C) 2014 Blanclink, Inc.
 ---------------------------
@@ -12,7 +12,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "bsnap",
-    version = "1.0",
+    version = "1.2",
     author = "Dave Franco",
     author_email = "dave.franco@blanclink.com",
     description = 'Automatic Snapshots',
