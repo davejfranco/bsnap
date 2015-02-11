@@ -67,9 +67,9 @@ def BackupVol(ec2):
     try:
         log.info('Creating Snapshots...')
         volumes=ec2.get_all_volumes()
-        for v in volumes:
-            if v.status()=='in-use':
-                v.create_snapshot(dry_run=True)
+        for v in range(len(volumes)):
+            if volumes[v].attachment_state()=='attached':
+                volumes[v].create_snapshot(dry_run=True)
     except:
         log.error('Unable to create snapshots')
         return False

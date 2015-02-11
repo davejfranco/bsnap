@@ -1,7 +1,7 @@
 
 ##**SNAPPY**###
 
-Deletes 7 days old snapshots and it creates new ones from 'in-use' volumes.
+Deletes 7 days old snapshots and it creates new ones from 'attached' volumes.
 It will notify via aws sns whether if the process success or failed
 
 
