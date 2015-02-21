@@ -27,7 +27,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "snappy",
-    version = "1.2",
+    version = "1.0",
     author = "Dave Franco",
     author_email = "davefranco1987@gmail.com",
     description = 'Automatic Snapshots',
