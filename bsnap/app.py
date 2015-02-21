@@ -22,16 +22,26 @@ SOFTWARE.
 Main module
 """
 
-
+import os
 import sys
 import log
 import boto.ec2
 import boto.sns
+import ConfigParser
 from datetime import datetime, timedelta
 
+
+config = ConfigParser.ConfigParser()
+config.read(os.getcwd()+'/snappy.conf')
+region = config.get('Region','region')
+key_id = config.get('Credentials','aws_access_key_id')
+secret_key = config.get('Credentials','aws_secret_access_key')
+
 # Connecting to region
-ec2 = boto.ec2.connect_to_region(region)
-sns = boto.sns.connect_to_region(region)
+ec2 = boto.ec2.connect_to_region(region,aws_access_key_id=key_id,
+    aws_secret_access_key=secret_key)
+sns = boto.sns.connect_to_region(region,aws_access_key_id=key_id,
+    aws_secret_access_key=secret_key)
 
 def DeleteSnap(ec2):
     """
@@ -79,7 +89,7 @@ def BackupVol(ec2):
     
 def main():
     """Main entry point"""
-    topic = arn_topic
+    topic = config.get('Sns','arn_topic')
     subject = "bsnap Backup"
     msg_win = "Successful bsnap Operation"
     msg_fail = "Failed bsnap Operation, check syslog entries"
