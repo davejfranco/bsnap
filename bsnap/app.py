@@ -1,7 +1,7 @@
 """
 Copyright (c) Dave Franco
 
-Snappy: AWS tool to automate snapshot from volumes
+bsnap: AWS tool to automate snapshot from volumes
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,7 @@ from datetime import datetime, timedelta
 
 
 config = ConfigParser.ConfigParser()
-config.read(os.getcwd()+'/snappy.conf')
+config.read(os.getcwd()+'/bsnap.conf')
 region = config.get('Region','region')
 key_id = config.get('Credentials','aws_access_key_id')
 secret_key = config.get('Credentials','aws_secret_access_key')
