@@ -2,7 +2,7 @@
 """
 Copyright (c) Dave Franco
 
-Snappy: AWS tool to automate snapshot from volumes
+bsnap: AWS tool to automate snapshot from volumes
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,8 +26,8 @@ import os
 from setuptools import setup, find_packages
 
 setup(
-    name = "snappy",
-    version = "1.2",
+    name = "bsnap",
+    version = "1.1",
     author = "Dave Franco",
     author_email = "davefranco1987@gmail.com",
     description = 'Automatic Snapshots',
@@ -35,12 +35,12 @@ setup(
     packages=find_packages(),
     entry_points={
         'console_scripts': [
-            'snappy = snappy.app:main',
+            'bsnap = bsnap.app:main',
         ],
     },
     install_requires = [
         'boto >= 2.33.0'
     ],
-    long_description='snappy deletes 14 days old snapshots '
+    long_description='bsnap deletes 14 days old snapshots '
                      'and creates snapshots every week',
 )

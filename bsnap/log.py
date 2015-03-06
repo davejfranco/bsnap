@@ -1,7 +1,7 @@
 """
 Copyright (c) Dave Franco
 
-Snappy: AWS tool to automate snapshot from volumes
+bsnap: AWS tool to automate snapshot from volumes
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
