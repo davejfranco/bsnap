@@ -32,7 +32,7 @@ from datetime import datetime, timedelta
 
 
 config = ConfigParser.ConfigParser()
-config.read(os.getcwd()+'/bsnap.conf')
+config.read('/etc/bsnap.conf')
 region = config.get('Region','region')
 key_id = config.get('Credentials','aws_access_key_id')
 secret_key = config.get('Credentials','aws_secret_access_key')
@@ -59,7 +59,7 @@ def DeleteSnap(ec2):
             start_time = datetime.strptime(snapshot.start_time,
                                        '%Y-%m-%dT%H:%M:%S.000Z')
             if start_time < delete_time:
-                snapshot.delete(dry_run=True)
+                snapshot.delete()
     except:
         log.error('Unable to delete snapshots')
         return False
@@ -79,7 +79,7 @@ def BackupVol(ec2):
         volumes=ec2.get_all_volumes()
         for v in range(len(volumes)):
             if volumes[v].attachment_state()=='attached':
-                volumes[v].create_snapshot(dry_run=True)
+                volumes[v].create_snapshot(description='generated with bsnap')
     except:
         log.error('Unable to create snapshots')
         return False

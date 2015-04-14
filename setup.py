@@ -23,7 +23,14 @@ SOFTWARE.
 setup module
 """
 import os
+import sys
+import shutil
 from setuptools import setup, find_packages
+
+try:
+    shutil.copy('bsnap.conf', '/etc')
+except "Unable to copy configuration file to etc directory":
+    sys.exit()
 
 setup(
     name = "bsnap",
