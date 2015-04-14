@@ -32,7 +32,7 @@ from datetime import datetime, timedelta
 
 
 config = ConfigParser.ConfigParser()
-config.read(os.getcwd()+'/etc/bsnap.conf')
+config.read('/etc/bsnap.conf')
 region = config.get('Region','region')
 key_id = config.get('Credentials','aws_access_key_id')
 secret_key = config.get('Credentials','aws_secret_access_key')
