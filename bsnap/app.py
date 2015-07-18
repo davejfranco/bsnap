@@ -45,9 +45,9 @@ sns = boto.sns.connect_to_region(region,aws_access_key_id=key_id,
 
 def DeleteSnap(ec2):
     """
-    Retrieves all snapshots on the region
-    region and catch the start_time attribute, if is 7 days
-    older than the actual date are going to be deleted.
+    Retrieves all snapshots on the region and
+    catch the start_time attribute, if is 7 days
+    older than the current date are going to be deleted.
     """
 
     Snapshots = ec2.get_all_snapshots(filters={'tag:Name':'*'})
